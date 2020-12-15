@@ -1,0 +1,93 @@
+<div id="container">
+    <div class="row">
+        <div class="column-9 column">
+            <label for="cep">
+                Informe o Cep a ser adicionado
+            </label>
+        </div>
+        <div class="column-9 column input">
+            <input id="cep" type="text" [formControl]="cep" placeholder="Digite o cep desejado para pesquisa">
+        </div>
+
+        <button (click)="pesquisar()">Adicionar</button>
+    </div>
+    <div class="rows">
+        <div class="column-9 column">
+            Filtro
+        </div>
+    </div>
+    <div class="row">
+        <div class="column-9 column">
+            <div class="column-3 column label">
+                <label for="filtracep">Cep</label>
+            </div>
+            <div class="column-9 column input">
+                <input id="filtracep" type="text" [formControl]="filtraCep">
+            </div>
+        </div>
+        <div class="column-9 column">
+            <div class="column-3 column label">
+                <label for="localidade">Cidade</label>
+            </div>
+            <div class="column-9 column input">
+                <input id="localidade" type="text" [formControl]="filtraLocal">
+            </div>
+        </div>
+        <div class="column-9 column">
+            <div class="column-3 column label">
+                <label for="logradouro">Logradouro</label>
+            </div>
+            <div class="column-9 column input">
+                <input id="logradouro" type="text" [formControl]="filtraLog">
+            </div>
+        </div>
+        <div class="column-9 column">
+            <div class="column-3 column label">
+                <label for="uf">Uf</label>
+            </div>
+            <div class="column-9 column input">
+                <input id="uf" type="text" [formControl]="filtraUf">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <p>Dica para usar o filtro: Campo cidade. Caso pesquise apenas "bra",
+            ele deve retornar todos os ceps que tem "bra" no campo cidade</p>
+        <button (click)="filterItems()">Filtrar</button>
+        <button (click)="clean()">Limpar</button>
+    </div>
+
+    <div class="column-9 column">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        UF
+                    </th>
+                    <th>
+                        Cidade
+                    </th>
+                    <th>
+                        Logradouro
+                    </th>
+                    <th>
+                        CEP
+                    </th>
+                    <th>
+                        Ação
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let endereco of enderecos">
+                    <td>{{endereco.uf}}</td>
+                    <td>{{endereco.localidade}}</td>
+                    <td>{{endereco.logradouro}}</td>
+                    <td>{{endereco.cep}}</td>
+                    <td><button (click)="exluir(endereco.cep)">Excluir</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
